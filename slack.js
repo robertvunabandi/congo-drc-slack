@@ -236,55 +236,5 @@ slack.post("/command_summary", function (request, response) {
     () => respondWithInvalidToken(response));
 });
 
+// export the module
 module.exports = slack;
-
-/*
-ABOUT SLACK
-
-See doc about slash commands: https://api.slack.com/slash-commands
-
---------------------------------------------------------------------------------
-Slack request contain the following parameters:
-- token:
-- team_id:
-- team_domain:
-- channel_id:
-- channel_name:
-- user_id:
-- user_name:
-- command:
-- text:
-- response_url:
-- trigger_id:
-
---------------------------------------------------------------------------------
-Here's a template for extracting all of them at once:
-  const var_name = {
-    token,
-    team_id,
-    team_domain,
-    channel_id,
-    channel_name,
-    user_id,
-    user_name,
-    command,
-    text,
-    response_url,
-    trigger_id } = request.body;
-
---------------------------------------------------------------------------------
-Slack request example:
-{
-  token: '<tokenidfromapp>',
-  team_id: 'T9SRQJVCP',
-  team_domain: 'teamdrc-hq',
-  channel_id: 'DA05N3Z0E',
-  channel_name: 'directmessage',
-  user_id: 'U9ZAM86KC',
-  user_name: 'robertv',
-  command: '/expertise',
-  text: 'helo',
-  response_url: 'https://hooks.slack.com/commands/T9SRQJVCP/379879175223/BHfpze342MCteBKc1EaxShKO',
-  trigger_id: '378606169780.332874641431.4651adc5ea359a12239f57ab3bbcce38'
-}
-*/
