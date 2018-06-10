@@ -1,7 +1,7 @@
 let guidelines = "\n\n";
 
 guidelines += `
-  =================================================================
+  =======================================================
   *Expertise Input Guidelines*
   
   We would like to follow a consistent guideline for members' fields of expertise, so here they are:
@@ -25,5 +25,5 @@ guidelines += "participating in building the software for this Slack application
 guidelines += `https://github.com/robertvunabandi/congo-drc-slack 
 
   _Thank you for your cooperation!_
-  =================================================================`;
+  =======================================================`;
 module.exports = guidelines;
