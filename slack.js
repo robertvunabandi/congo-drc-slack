@@ -197,7 +197,7 @@ slack.post("/team_experts", function (request, response) {
       } else {
         let text = "";
         expertises.forEach(function (expert) {
-          text += `*${expert.user_name}* - ${expert.expertise}\n`;
+          text += `*${expert.user_name || expert.user_id}* - ${expert.expertise}\n`;
         });
         respondRequest(null, text);
       }

@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const UserExpertiseSchema = new mongoose.Schema({
   team_id: {type: String, required: true},
   user_id: {type: String, required: true},
+  user_name: String,
   expertise: {type: Array, required: true}
 });
 
