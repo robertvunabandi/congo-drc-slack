@@ -214,6 +214,18 @@ slack.post("/team_experts", function (request, response) {
   }, () => respondWithInvalidToken(response));
 });
 
+/***
+ * POST /expertise_guideline
+ * see the expertise guideline
+ * */
+slack.post("/expertise_guideline", function (request, response) {
+  const { token  } = request.body;
+
+  verifySlackToken(token).then(
+    () => slackRespond(response, FIELD_GUIDELINES),
+    () => respondWithInvalidToken(response));
+});
+
 module.exports = slack;
 
 /*
