@@ -4,7 +4,7 @@
   "description": "Slack application for Congo DRC Slack chat. Application will be useful for management tasks.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "npm install && node index.js"
   },
   "author": {
     "name": "Robert M. Vunabandi",
