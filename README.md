@@ -16,7 +16,7 @@ You can already run the following commands within the Slack application.
 
 ## In the Future
 
-In this section, we have all the things that we plan on adding in the future. 
+In this section, we have all the things that we plan on adding in the future. More of these will be added as the participation in the Slack channel grows (as most of these work best with many participants)!
 
 #### Fields By Number
 
