@@ -24,6 +24,14 @@ Seeing who is on what field grouped by field.
 
 Generate a spreadsheet of the fields with Google Sheets.
 
+#### Fields in Common
+
+See who also is an expert in your field(s).
+
+#### Field Search 
+
+Search a field by keyword, and see who is an expert in that field.
+
 #### What's in Your Mind?
 
 Let us know what you think we can add in the Slack channel! 
