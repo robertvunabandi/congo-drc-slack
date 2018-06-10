@@ -1,0 +1,22 @@
+{
+  "name": "congo-drc-slack-app",
+  "version": "0.0.0",
+  "description": "Slack application for Congo DRC Slack chat. Application will be useful for management tasks.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": {
+    "name": "Robert M. Vunabandi",
+    "email": "rvunabandi@gmail.com",
+    "url": "https://github.com/robertvunabandi"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "mongoose": "^5.1.4",
+    "morgan": "^1.9.0"
+  }
+}
