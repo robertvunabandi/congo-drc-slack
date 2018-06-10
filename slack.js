@@ -187,9 +187,9 @@ slack.post("/team_experts", function (request, response) {
       } else {
         let text = "";
         expertises.forEach(function (expert) {
-          text += `${expert.user_name} - ${expert.expertise}\n`;
+          text += `*${expert.user_name}* - ${expert.expertise}\n`;
         });
-        respondRequest(null, expertises);
+        respondRequest(null, text);
       }
     });
 
@@ -197,7 +197,7 @@ slack.post("/team_experts", function (request, response) {
     function respondRequest(err, experts) {
       let text = err ?
         `An error occurred while fetching all the experts in Team DRC` :
-        `Here is a list of experts (by username) and their fields of expertise: \n ${experts}`;
+        `Here is a list of experts (by username) and their fields of expertise: \n\n${experts}`;
       slackRespond(response, text);
     }
   }, () => respondWithInvalidToken(response));
