@@ -85,7 +85,7 @@ function createSlackResponseObject(text, attachments) {
   if (attachments) {
     slackObject.attachments = attachments;
   }
-  return {slackObject};
+  return slackObject;
 }
 
 /**

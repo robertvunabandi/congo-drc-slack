@@ -1,6 +1,6 @@
 {
   "name": "congo-drc-slack-app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Slack application for Congo DRC Slack chat. Application will be useful for management tasks.",
   "main": "index.js",
   "scripts": {
