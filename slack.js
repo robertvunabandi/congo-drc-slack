@@ -218,8 +218,9 @@ module.exports = slack;
 /*
 ABOUT SLACK
 
---------------------------------------------------------------------------------
+See doc about slash commands: https://api.slack.com/slash-commands
 
+--------------------------------------------------------------------------------
 Slack request contain the following parameters:
 - token:
 - team_id:
@@ -234,7 +235,6 @@ Slack request contain the following parameters:
 - trigger_id:
 
 --------------------------------------------------------------------------------
-
 Here's a template for extracting all of them at once:
   const var_name = {
     token,
@@ -250,7 +250,6 @@ Here's a template for extracting all of them at once:
     trigger_id } = request.body;
 
 --------------------------------------------------------------------------------
-
 Slack request example:
 {
   token: 'sl21GFReZbTaJtV6zw9HoQnC',
