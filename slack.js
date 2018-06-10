@@ -136,7 +136,7 @@ slack.post("/set_expertise", function (request, response) {
     function respondRequest(err) {
       let text = err ?
         `An error happened while saving your expertise. Please try again!` :
-        `Your expertise(s) (${fields}) have been saved. Thank you!`;
+        `Your expertise(s) (*${fields}*) have been saved. Thank you!`;
       slackRespond(response, text, null);
     }
 
