@@ -61,9 +61,13 @@ function validFields(fields) {
  *
  * @param response {Object} - response object from request
  * @param text {String} - slack textual response
+ * @param attachments {Array<Object>} -
+ *    an array of objects slack attachments
+ *    see https://api.slack.com/docs/message-attachments
+ *    > this parameter is optional
  * */
-function slackRespond(response, text) {
-  response.status(200).send(createSlackResponseObject(text));
+function slackRespond(response, text, attachments) {
+  response.status(200).send(createSlackResponseObject(text, attachments));
 }
 
 /**
@@ -71,11 +75,17 @@ function slackRespond(response, text) {
  * create a response object that is valid to slack
  *
  * @param text {String} - slack textual response
+ * @param attachments {Array<Object>} -
+ *    an array of objects slack attachments
+ *    see https://api.slack.com/docs/message-attachments
+ *    > this parameter is optional
  * */
-function createSlackResponseObject(text) {
-  return {
-    text
-  };
+function createSlackResponseObject(text, attachments) {
+  let slackObject = {text};
+  if (attachments) {
+    slackObject.attachments = attachments;
+  }
+  return {slackObject};
 }
 
 /**
@@ -126,7 +136,7 @@ slack.post("/set_expertise", function (request, response) {
       let text = err ?
         `An error happened while saving your expertise. Please try again!` :
         `Your expertise(s) (${fields}) have been saved. Thank you!`;
-      slackRespond(response, text);
+      slackRespond(response, text, null);
     }
 
   }, () => respondWithInvalidToken(response));
@@ -152,7 +162,7 @@ slack.post("/my_expertise", function (request, response) {
         respondRequest(err, null, "A server error occurred");
       } else if (user === null) {
         let msg = "You have not set your expertise yet. ";
-        msg += "You can reset them by using /set_expertise in Slack.";
+        msg += "You can reset them by using `/set_expertise` in Slack.";
         respondRequest("Error", null, msg);
       } else {
         respondRequest(null, user.expertise);
@@ -163,8 +173,8 @@ slack.post("/my_expertise", function (request, response) {
     function respondRequest(err, fields, error_message) {
       let text = err ?
         `The following error happened while fetching your expertise: \n${error_message}\n.` :
-        `Here are your expertise(s):\n${fields}\n\n You can reset them with /set_expertise`;
-      slackRespond(response, text);
+        `Here are your expertise(s):\n${fields}\n\n You can reset them with \`/set_expertise\``;
+      slackRespond(response, text, null);
     }
   }, () => respondWithInvalidToken(response));
 
@@ -198,7 +208,7 @@ slack.post("/team_experts", function (request, response) {
       let text = err ?
         `An error occurred while fetching all the experts in Team DRC` :
         `Here is a list of experts (by username) and their fields of expertise: \n\n${experts}`;
-      slackRespond(response, text);
+      slackRespond(response, text, null);
     }
   }, () => respondWithInvalidToken(response));
 });
