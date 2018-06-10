@@ -208,7 +208,7 @@ slack.post("/team_experts", function (request, response) {
     function respondRequest(err, experts) {
       let text = err ?
         `An error occurred while fetching all the experts in Team DRC` :
-        `Here is a list of experts (by username) and their fields of expertise: \n\n${experts}`;
+        `_Here is a list of experts (by username) and their fields of expertise:_\n\n${experts}`;
       slackRespond(response, text, null);
     }
   }, () => respondWithInvalidToken(response));
