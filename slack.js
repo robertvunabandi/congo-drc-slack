@@ -119,6 +119,7 @@ slack.post("/set_expertise", function (request, response) {
         if (err || user === null) {
           createUser();
         } else {
+          user.user_name = user_name;
           user.expertise = fields;
           user.save((err) => respondRequest(err));
         }
