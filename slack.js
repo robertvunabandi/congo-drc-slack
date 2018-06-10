@@ -174,12 +174,10 @@ slack.post("/my_expertise", function (request, response) {
     function respondRequest(err, fields, error_message) {
       let text = err ?
         `The following error happened while fetching your expertise: \n${error_message}\n.` :
-        `Here are your expertise(s):\n${fields}\n\n You can reset them with \`/set_expertise\``;
+        `_Here are your expertise(s):_\n*${fields}*\n\n You can reset them with \`/set_expertise\``;
       slackRespond(response, text, null);
     }
   }, () => respondWithInvalidToken(response));
-
-  response.send("hello");
 });
 
 /**
