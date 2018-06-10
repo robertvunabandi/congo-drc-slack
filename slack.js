@@ -2,12 +2,13 @@
 const slack = require("express").Router();
 const UserExpertise = require("./models/user_expertise.js");
 const FIELD_GUIDELINES = require("./models/field_guidelines.js");
+const COMMAND_SUMMARY = require("./models/command_summary.js");
 
 /**
  * verifySlackToken
  * very that the token received from the response is correct for this app
  *
- * @param token {String} - token received from slack request
+ * @param token {String} - token received from Slack request
  * */
 function verifySlackToken(token) {
   return new Promise(function (resolve, reject) {
@@ -28,7 +29,7 @@ function verifySlackToken(token) {
 function respondWithInvalidToken(response) {
   response.status(404).send({
     status: 404,
-    message: "Invalid slack token"
+    message: "Invalid Slack token"
   });
 }
 
@@ -57,12 +58,12 @@ function validFields(fields) {
 
 /**
  * slackRespond
- * respond with a json object that is slack valid
+ * respond with a json object that is Slack valid
  *
  * @param response {Object} - response object from request
- * @param text {String} - slack textual response
+ * @param text {String} - Slack textual response
  * @param attachments {Array<Object>} -
- *    an array of objects slack attachments
+ *    an array of objects Slack attachments
  *    see https://api.slack.com/docs/message-attachments
  *    > this parameter is optional
  * */
@@ -72,16 +73,16 @@ function slackRespond(response, text, attachments) {
 
 /**
  * createSlackResponseObject
- * create a response object that is valid to slack
+ * create a response object that is valid to Slack
  *
- * @param text {String} - slack textual response
+ * @param text {String} - Slack textual response
  * @param attachments {Array<Object>} -
- *    an array of objects slack attachments
+ *    an array of objects Slack attachments
  *    see https://api.slack.com/docs/message-attachments
  *    > this parameter is optional
  * */
 function createSlackResponseObject(text, attachments) {
-  let slackObject = {text};
+  let slackObject = { text };
   if (attachments) {
     slackObject.attachments = attachments;
   }
@@ -94,7 +95,7 @@ function createSlackResponseObject(text, attachments) {
  * when a user wants to set their expertise in coma separated values
  **/
 slack.post("/set_expertise", function (request, response) {
-  // extract all the needed slack information
+  // extract all the needed Slack information
   const { token, team_id, user_id, user_name, text } = request.body;
 
   verifySlackToken(token).then(function () {
@@ -150,7 +151,7 @@ slack.post("/set_expertise", function (request, response) {
  * a user wants to see his own expertise
  **/
 slack.post("/my_expertise", function (request, response) {
-  // extract all the needed slack information
+  // extract all the needed Slack information
   const { token, team_id, user_id } = request.body;
 
   verifySlackToken(token).then(function () {
@@ -186,9 +187,9 @@ slack.post("/my_expertise", function (request, response) {
  * View everyone's expertise
  * */
 slack.post("/team_experts", function (request, response) {
-  const { token  } = request.body;
+  const { token } = request.body;
 
-  verifySlackToken(token).then( function () {
+  verifySlackToken(token).then(function () {
     // find all the experts and post them as a message
     UserExpertise.find({}, function (err, expertises) {
       if (err) {
@@ -212,15 +213,26 @@ slack.post("/team_experts", function (request, response) {
   }, () => respondWithInvalidToken(response));
 });
 
-/***
+/**
  * POST /expertise_guideline
  * see the expertise guideline
  * */
 slack.post("/expertise_guideline", function (request, response) {
-  const { token  } = request.body;
+  const { token } = request.body;
 
   verifySlackToken(token).then(
     () => slackRespond(response, FIELD_GUIDELINES),
+    () => respondWithInvalidToken(response));
+});
+
+/**
+ * POST /command_summary
+ * see a list of commands that can be used on this Slack app
+ * */
+slack.post("/command_summary", function (request, response) {
+  const { token } = request.body;
+  verifySlackToken(token).then(
+    () => slackRespond(response, COMMAND_SUMMARY),
     () => respondWithInvalidToken(response));
 });
 
