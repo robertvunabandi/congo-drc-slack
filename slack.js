@@ -252,7 +252,7 @@ Here's a template for extracting all of them at once:
 --------------------------------------------------------------------------------
 Slack request example:
 {
-  token: 'sl21GFReZbTaJtV6zw9HoQnC',
+  token: '<tokenidfromapp>',
   team_id: 'T9SRQJVCP',
   team_domain: 'teamdrc-hq',
   channel_id: 'DA05N3Z0E',
